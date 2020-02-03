@@ -1,0 +1,74 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+- group: GitHubPATGroup
+- name: solution
+  value: '**/*.sln'
+- name: buildPlatform
+  value: 'Any CPU'
+- name: buildConfiguration
+  value: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: false
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/BlazorWasmBlog.Blazor/BlazorWasmBlog.Blazor/dist'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/blazorwasmblog.blazor.dist/blazorwasmblog.blazor.dist-$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\blazorwasmblog.blazor.dist'
+    ArtifactName: 'blazorwasmblog.blazor.dist'
+    publishLocation: 'Container'
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $env:GIT_REDIRECT_STDERR` = '2>&1'
+      git config --global user.name "$env:GIT_NAME"
+      git config --global user.email "$env:GIT_EMAIL"
+      cd $(Build.ArtifactStagingDirectory)/BlazorWasmBlog.Blazor/BlazorWasmBlog.Blazor/dist
+      git init
+      git add -A
+      git commit -m "Publish from build $(Build.BuildId)"
+      git remote add origin https://$env:GIT_PAT@github.com/WizX20/blazorwasmblog.github.io.git
+      git push -f https://$env:GIT_PAT@github.com/WizX20/blazorwasmblog.github.io.git master
+      if ($lastexitcode -lt 2) { $lastexitcode = 0 }
+    errorActionPreference: 'Stop'
+    ignoreLASTEXITCODE: false
+    pwsh: true
+  env:
+    GIT_NAME: $(GitHubName)
+    GIT_EMAIL: $(GitHubEmail)
+    GIT_PAT: $(GitHubPAT)
