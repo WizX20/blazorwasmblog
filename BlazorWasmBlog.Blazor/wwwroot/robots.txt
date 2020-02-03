@@ -1,4 +1,9 @@
 User-agent: *
+
+# Deny all, remove in production
+Disallow:/
+
+# Do not index assets
 Disallow: /_framework/
 Disallow: /sample_data/
 Disallow: /assets/
