@@ -55,6 +55,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      $env:GIT_REDIRECT_STDERR` = '2>&1'
       git config --global user.name "$env:GIT_NAME"
       git config --global user.email "$env:GIT_EMAIL"
       cd $(Build.ArtifactStagingDirectory)/BlazorWasmBlog.Blazor/BlazorWasmBlog.Blazor/dist
@@ -63,8 +64,9 @@ steps:
       git commit -m "Publish from build $(Build.BuildId)"
       git remote add origin https://$env:GIT_PAT@github.com/WizX20/blazorwasmblog.github.io.git
       git push -f https://$env:GIT_PAT@github.com/WizX20/blazorwasmblog.github.io.git master
-    errorActionPreference: 'silentlyContinue'
-    ignoreLASTEXITCODE: true
+      if ($lastexitcode -lt 2) { $lastexitcode = 0 }
+    errorActionPreference: 'Stop'
+    ignoreLASTEXITCODE: false
     pwsh: true
   env:
     GIT_NAME: $(GitHubName)
