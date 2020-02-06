@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -9,17 +9,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dawn.Guard" Version="1.10.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorWasmBlog.Core\BlazorWasmBlog.Core.Domain\BlazorWasmBlog.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\BlazorWasmBlog.Core\BlazorWasmBlog.Core.Infrastructure\BlazorWasmBlog.Core.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Configuration\SquidexCmsSettings.tt">
+    <None Update="Configuration\SquidexCmsConfiguration.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SquidexCmsSettings.cs</LastGenOutput>
+      <LastGenOutput>SquidexCmsConfiguration.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
@@ -28,10 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Configuration\SquidexCmsSettings.cs">
+    <Compile Update="Configuration\SquidexCmsConfiguration.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>SquidexCmsSettings.tt</DependentUpon>
+      <DependentUpon>SquidexCmsConfiguration.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

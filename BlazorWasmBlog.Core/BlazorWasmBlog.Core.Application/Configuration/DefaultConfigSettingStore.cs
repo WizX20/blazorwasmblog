@@ -1,11 +1,12 @@
-﻿using BlazorWasmBlog.Core.Infrastructure.Extensions;
+﻿using BlazorWasmBlog.Core.Infrastructure.Configuration;
+using BlazorWasmBlog.Core.Infrastructure.Extensions;
 using Dawn;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BlazorWasmBlog.Core.Domain.Configuration
+namespace BlazorWasmBlog.Core.Application.Configuration
 {
     public class DefaultConfigSettingStore : SettingsStore
     {
@@ -18,10 +19,8 @@ namespace BlazorWasmBlog.Core.Domain.Configuration
             this.ConfigurationSettings = configurationSettings;
         }
 
-        public override T GetSettings<T>(string sectionName)
+        public override T GetSettings<T>(string configurationName, string sectionName)
         {
-            string configurationName = typeof(T).Name;
-
             return this.GetConfigurationInstance<T>(
                 configurationName: configurationName,
                 sectionName: sectionName,
@@ -30,10 +29,8 @@ namespace BlazorWasmBlog.Core.Domain.Configuration
             );
         }
 
-        public override T GetDevelopmentSettings<T>(string sectionName)
+        public override T GetDevelopmentSettings<T>(string configurationName, string sectionName)
         {
-            string configurationName = typeof(T).Name;
-
             return this.GetConfigurationInstance<T>(
                 configurationName: configurationName,
                 sectionName: sectionName,
@@ -47,7 +44,7 @@ namespace BlazorWasmBlog.Core.Domain.Configuration
             string sectionName,
             string fileName,
             bool useDevelopmentSettings)
-            where T : class, IConfigurationSettings, new()
+            where T : class, new()
         {
             var configuration = this.GetConfigurationRoot(
                 configurationName: configurationName,

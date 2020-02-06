@@ -1,4 +1,4 @@
-﻿namespace BlazorWasmBlog.Core.Domain.Configuration
+﻿namespace BlazorWasmBlog.Core.Infrastructure.Configuration
 {
     public interface IConfigurationSettings
     {
