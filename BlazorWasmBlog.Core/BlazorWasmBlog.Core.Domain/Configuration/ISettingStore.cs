@@ -4,8 +4,10 @@ namespace BlazorWasmBlog.Core.Domain.Configuration
 {
     public interface ISettingStore
     {
-        string GetSettings<T>() where T : class, IConfigurationSettings;
+        T GetSettings<T>(string sectionName) where T : class, IConfigurationSettings, new();
 
-        IConfiguration GetConfiguration();
+        T GetDevelopmentSettings<T>(string sectionName) where T : class, IConfigurationSettings, new();
+
+        IConfiguration GetConfigurationRoot(string configurationName, string fileName, bool useDevelopmentSettings);
     }
 }

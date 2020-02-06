@@ -2,5 +2,8 @@
 {
     public interface IConfigurationSettings
     {
+        string GetSettings();
+
+        string GetDevelopmentSettings();
     }
 }

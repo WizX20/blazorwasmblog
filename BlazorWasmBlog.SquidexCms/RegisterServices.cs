@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BlazorWasmBlog.Core.Domain.Configuration;
+using BlazorWasmBlog.SquidexCms.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorWasmBlog.SquidexCms
 {
@@ -6,7 +8,7 @@ namespace BlazorWasmBlog.SquidexCms
     {
         public static void AddSquidexCms(this IServiceCollection services)
         {
-            // TODO: register stuff in DI for squidex cms
+            services.AddSingleton<IConfigurationSettings, SquidexCmsSettings>();
         }
     }
 }

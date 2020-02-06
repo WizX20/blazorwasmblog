@@ -14,7 +14,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace BlazorWasmBlog.SquidexCms.Configuration
 {
     [ExcludeFromCodeCoverage]
-    public class SquidexCmsConfiguration : IConfigurationSettings
+    public class SquidexCmsSettings : IConfigurationSettings
     {
         /// <summary>
         /// Configuration.Development.json
@@ -50,5 +50,18 @@ namespace BlazorWasmBlog.SquidexCms.Configuration
 }";
             }
         }
+        
+        public string GetSettings()
+        {
+            var settings = Configuration_Development;
+            return settings;
+        }
+
+        public string GetDevelopmentSettings()
+        {
+            var settings = Configuration;
+            return settings;
+        }
+
     }
 }

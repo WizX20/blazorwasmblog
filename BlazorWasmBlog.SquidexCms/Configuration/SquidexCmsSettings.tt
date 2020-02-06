@@ -32,13 +32,28 @@ using System.Diagnostics.CodeAnalysis;
 namespace BlazorWasmBlog.SquidexCms.Configuration
 {
     [ExcludeFromCodeCoverage]
-    public class SquidexCmsConfiguration : IConfigurationSettings
+    public class SquidexCmsSettings : IConfigurationSettings
     {
-<# foreach(var file in files) { #>
+<#
+    var defaultMethods = new List<string>();
+    var developmentMethods = new List<string>();
+
+    foreach (var file in files)
+    {
+        var methodName = Path.GetFileNameWithoutExtension(file).Replace(".", "_");
+        if (methodName.EndsWith("_Development", StringComparison.OrdinalIgnoreCase))
+        {
+            defaultMethods.Add(methodName);
+        }
+        else
+        {
+            developmentMethods.Add(methodName);
+        }
+#>
         /// <summary>
         /// <#= file.Replace(path, "").Trim('\\') #>
         /// </summary>
-        public static string <#= Path.GetFileNameWithoutExtension(file).Replace(".", "_") #>
+        public static string <#= methodName #>
         {
             get
             {
@@ -46,5 +61,18 @@ namespace BlazorWasmBlog.SquidexCms.Configuration
             }
         }
 <# } #>
+        
+        public string GetSettings()
+        {
+            var settings = <#= string.Join(" + ", defaultMethods) #>;
+            return settings;
+        }
+
+        public string GetDevelopmentSettings()
+        {
+            var settings = <#= string.Join(" + ", developmentMethods) #>;
+            return settings;
+        }
+
     }
 }
