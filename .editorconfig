@@ -1,3 +1,4 @@
+# Suppress: EC120
 # EditorConfig is awesome: https://EditorConfig.org
 #  https://github.com/dotnet/roslyn/blob/master/.editorconfig
 #  https://github.com/MicrosoftDocs/visualstudio-docs/blob/master/docs/ide/editorconfig-code-style-settings-reference.md
@@ -42,10 +43,10 @@ indent_size = 2
 # Sort using and Import directives with System.* appearing first
 dotnet_sort_system_directives_first = true:warning
 # Add "this." and "Me." if possible
-dotnet_style_qualification_for_field = true:refactoring
-dotnet_style_qualification_for_property = true:refactoring
-dotnet_style_qualification_for_method = true:refactoring
-dotnet_style_qualification_for_event = true:refactoring
+dotnet_style_qualification_for_field = true:warning
+dotnet_style_qualification_for_property = true:warning
+dotnet_style_qualification_for_method = true:warning
+dotnet_style_qualification_for_event = true:warning
 
 # Use language keywords instead of framework type names for type references
 dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
@@ -139,7 +140,7 @@ dotnet_naming_symbols.all_members.applicable_kinds = *
 dotnet_naming_style.pascal_case_style.capitalization = pascal_case
 
 # CSharp code style settings:
-[*.cs]
+[*.{cs,razor}]
 # Newline settings
 csharp_new_line_before_open_brace = all
 csharp_new_line_before_else = true
@@ -216,4 +217,7 @@ dotnet_diagnostic.RS0037.severity = none
 dotnet_diagnostic.MethodDocumentationHeader.severity = suggestion
 dotnet_diagnostic.ClassDocumentationHeader.severity = suggestion
 dotnet_diagnostic.ConstructorDocumentationHeader.severity = suggestion
+dotnet_diagnostic.PropertyDocumentationHeader.severity = suggestion
+
+# PropertyDocumentationHeader: The property must have a documentation header.
 dotnet_diagnostic.PropertyDocumentationHeader.severity = suggestion
