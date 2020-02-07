@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BlazorWasmBlog.Modules\BlazorWasmBlog.Modules.SquidexCms\BlazorWasmBlog.Modules.SquidexCms.csproj" />
     <ProjectReference Include="..\BlazorWasmBlog.Core.Domain\BlazorWasmBlog.Core.Domain.csproj" />
     <ProjectReference Include="..\BlazorWasmBlog.Core.Infrastructure\BlazorWasmBlog.Core.Infrastructure.csproj" />
   </ItemGroup>
