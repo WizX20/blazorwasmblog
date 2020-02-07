@@ -4,9 +4,9 @@ using Dawn;
 
 namespace BlazorWasmBlog.Modules.SquidexCms.Services
 {
-    public class SquidexCmsSettingsService
+    public class SquidexCmsSettingsService : ISquidexCmsSettingsService
     {
-        protected ISettingStore SettingStore { get; set; }
+        protected ISettingStore SettingStore { get; }
 
         public SquidexCmsSettingsService(ISettingStore settingStore)
         {
