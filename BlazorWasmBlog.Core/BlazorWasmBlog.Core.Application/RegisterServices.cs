@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Polly.Retry;
 using System.Net.Http;
 
-namespace BlazorWasmBlog.Modules.SquidexCms
+namespace BlazorWasmBlog.Core.Application
 {
     public static class RegisterServices
     {
