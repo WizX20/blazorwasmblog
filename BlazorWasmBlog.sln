@@ -17,6 +17,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWasmBlog.Core.Applica
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWasmBlog.Modules.SquidexCms", "BlazorWasmBlog.Modules\BlazorWasmBlog.Modules.SquidexCms\BlazorWasmBlog.Modules.SquidexCms.csproj", "{A2CE50DA-594B-4C9F-AEE4-86906936B018}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{8E801871-290D-4BA2-9AA9-2112A388AA99}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		azure-pipelines.yml = azure-pipelines.yml
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
