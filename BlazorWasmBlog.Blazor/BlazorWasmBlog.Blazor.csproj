@@ -12,4 +12,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview1.20073.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorWasmBlog.Core\BlazorWasmBlog.Core.Application\BlazorWasmBlog.Core.Application.csproj" />
+    <ProjectReference Include="..\BlazorWasmBlog.Modules\BlazorWasmBlog.Modules.SquidexCms\BlazorWasmBlog.Modules.SquidexCms.csproj" />
+  </ItemGroup>
+
 </Project>
