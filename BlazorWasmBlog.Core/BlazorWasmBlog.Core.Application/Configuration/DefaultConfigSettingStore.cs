@@ -10,7 +10,7 @@ namespace BlazorWasmBlog.Core.Application.Configuration
 {
     public class DefaultConfigSettingStore : SettingsStore
     {
-        protected IEnumerable<IConfigurationSettings> ConfigurationSettings { get; set; }
+        protected IEnumerable<IConfigurationSettings> ConfigurationSettings { get; }
 
         public DefaultConfigSettingStore(IEnumerable<IConfigurationSettings> configurationSettings)
         {
