@@ -218,6 +218,3 @@ dotnet_diagnostic.MethodDocumentationHeader.severity = suggestion
 dotnet_diagnostic.ClassDocumentationHeader.severity = suggestion
 dotnet_diagnostic.ConstructorDocumentationHeader.severity = suggestion
 dotnet_diagnostic.PropertyDocumentationHeader.severity = suggestion
-
-# PropertyDocumentationHeader: The property must have a documentation header.
-dotnet_diagnostic.PropertyDocumentationHeader.severity = suggestion
