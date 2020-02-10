@@ -22,7 +22,27 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorWasmBlog.Core\BlazorWasmBlog.Core.Application\BlazorWasmBlog.Core.Application.csproj" />
+    <ProjectReference Include="..\BlazorWasmBlog.Core\BlazorWasmBlog.Core.Infrastructure\BlazorWasmBlog.Core.Infrastructure.csproj" />
     <ProjectReference Include="..\BlazorWasmBlog.Modules\BlazorWasmBlog.Modules.SquidexCms\BlazorWasmBlog.Modules.SquidexCms.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Configuration\SquidexCmsConfiguration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SquidexCmsConfiguration.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Configuration\SquidexCmsConfiguration.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SquidexCmsConfiguration.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

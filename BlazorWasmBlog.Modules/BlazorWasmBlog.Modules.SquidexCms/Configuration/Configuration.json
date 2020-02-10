@@ -1,8 +1,0 @@
-﻿{
-  "SquidexCmsSettings": {
-    "Url": "https://cloud.squidex.io",
-    "AppName": "todo",
-    "ClientId": "todo:default",
-    "ClientSecret": "todo"
-  }
-}
