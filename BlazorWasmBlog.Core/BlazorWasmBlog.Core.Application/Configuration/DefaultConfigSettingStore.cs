@@ -10,6 +10,21 @@ namespace BlazorWasmBlog.Core.Application.Configuration
 {
     public class DefaultConfigSettingStore : SettingsStore
     {
+        /// <summary>
+        /// The ASPNETCORE_ENVIRONMENT variable as defined in the launchSettings.json.
+        /// </summary>
+        public const string ASPNETCORE_ENVIRONMENT = nameof(ASPNETCORE_ENVIRONMENT);
+
+        /// <summary>
+        /// The active ASPNETCORE_ENVIRONMENT value when in development mode as defined in the launchSettings.json.
+        /// </summary>
+        public const string Development = nameof(Development);
+
+        /// <summary>
+        /// Gets the environment name from the launchSettings.json.
+        /// </summary>
+        public static string EnvironmentName { get; } = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
         protected IEnumerable<IConfigurationSettings> ConfigurationSettings { get; }
 
         public DefaultConfigSettingStore(IEnumerable<IConfigurationSettings> configurationSettings)
@@ -19,8 +34,29 @@ namespace BlazorWasmBlog.Core.Application.Configuration
             this.ConfigurationSettings = configurationSettings;
         }
 
+        /// <summary>
+        /// Gets the settings as given class <typeparamref name="T"/> based on the active 
+        /// <see cref="EnvironmentName"/>.
+        /// </summary>
+        /// <param name="configurationName">
+        /// The name of the configuration, must be available in the <see cref="ConfigurationSettings"/>: 
+        /// registered as service.
+        /// </param>
+        /// <param name="sectionName">
+        /// The name of the configured section to convert to the class <typeparamref name="T"/>
+        /// .</param>
+        /// <returns>The requested configuration section as <typeparamref name="T"/>.</returns>
         public override T GetSettings<T>(string configurationName, string sectionName)
         {
+            if (!string.IsNullOrEmpty(EnvironmentName)
+                && EnvironmentName.Equals(Development, StringComparison.OrdinalIgnoreCase))
+            {
+                return this.GetDevelopmentSettings<T>(
+                    configurationName: configurationName,
+                    sectionName: sectionName
+                );
+            }
+
             return this.GetConfigurationInstance<T>(
                 configurationName: configurationName,
                 sectionName: sectionName,
@@ -29,12 +65,24 @@ namespace BlazorWasmBlog.Core.Application.Configuration
             );
         }
 
+        /// <summary>
+        /// Gets the settings as given class <typeparamref name="T"/> for the 
+        /// <see cref="Development"/> environment.
+        /// </summary>
+        /// <param name="configurationName">
+        /// The name of the configuration, must be available in the <see cref="ConfigurationSettings"/>: 
+        /// registered as service.
+        /// </param>
+        /// <param name="sectionName">
+        /// The name of the configured section to convert to the class <typeparamref name="T"/>
+        /// .</param>
+        /// <returns>The requested configuration section as <typeparamref name="T"/>.</returns>
         public override T GetDevelopmentSettings<T>(string configurationName, string sectionName)
         {
             return this.GetConfigurationInstance<T>(
                 configurationName: configurationName,
                 sectionName: sectionName,
-                fileName: $"Development.{configurationName}",
+                fileName: $"{Development}.{configurationName}",
                 useDevelopmentSettings: true
             );
         }
