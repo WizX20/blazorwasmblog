@@ -218,3 +218,4 @@ dotnet_diagnostic.MethodDocumentationHeader.severity = suggestion
 dotnet_diagnostic.ClassDocumentationHeader.severity = suggestion
 dotnet_diagnostic.ConstructorDocumentationHeader.severity = suggestion
 dotnet_diagnostic.PropertyDocumentationHeader.severity = suggestion
+dotnet_diagnostic.ConstFieldDocumentationHeader.severity = suggestion
