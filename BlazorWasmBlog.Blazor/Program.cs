@@ -1,5 +1,6 @@
 ﻿#pragma warning disable RCS1102 // Make class static.
 
+using BlazorWasmBlog.Blazor.Configuration;
 using BlazorWasmBlog.Core.Application;
 using BlazorWasmBlog.Modules.SquidexCms;
 using Microsoft.AspNetCore.Blazor.Hosting;
@@ -24,7 +25,7 @@ namespace BlazorWasmBlog.Blazor
         {
             // Configuration
             services.AddDefaultConfigSettingStore(); // use default in-memory configuration
-            services.AddSquidexCms(); // using squidex as Content Management System
+            services.AddSquidexCms<SquidexCmsConfigurationSettings>(); // using squidex as Content Management System
 
             // TODO: Future service registrations here: ...
             // Caching
