@@ -6,8 +6,6 @@ namespace BlazorWasmBlog.Core.Infrastructure.Configuration
     {
         T GetSettings<T>(string configurationName, string sectionName) where T : class, new();
 
-        T GetDevelopmentSettings<T>(string configurationName, string sectionName) where T : class, new();
-
-        IConfiguration GetConfigurationRoot(string configurationName, string fileName, bool useDevelopmentSettings);
+        IConfiguration GetConfigurationRoot(string configurationName, string fileName, string environmentName);
     }
 }
