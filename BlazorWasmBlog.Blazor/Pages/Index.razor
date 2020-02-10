@@ -26,7 +26,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var squidexCmsSettings = CmsSettingsService.GetSquidexCmsSettings(false);
+        var squidexCmsSettings = CmsSettingsService.GetSquidexCmsSettings();
         SquidexAppNameSetting = $"{nameof(SquidexCmsSettings.AppName)}: {squidexCmsSettings.AppName}";
 
         await base.OnInitializedAsync();

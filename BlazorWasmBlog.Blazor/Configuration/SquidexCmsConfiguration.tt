@@ -35,44 +35,47 @@ namespace BlazorWasmBlog.Blazor.Configuration
     public class SquidexCmsConfigurationSettings : IConfigurationSettings
     {
 <#
-    var defaultMethods = new List<string>();
-    var developmentMethods = new List<string>();
+    var configMethods = new List<string[]>();
 
     foreach (var file in files)
     {
+        var fileName = Path.GetFileNameWithoutExtension(file);
+        var configEnvName = "Default";
+        
+        var fileNameParts = fileName.Split(new[] { '.' });
+        if (fileNameParts.Length > 1)
+        {
+            configEnvName = fileNameParts[fileNameParts.Length - 1];
+        }
+        
         var methodName = Path.GetFileNameWithoutExtension(file).Replace(".", "_");
-        if (methodName.EndsWith("_Development", StringComparison.OrdinalIgnoreCase))
-        {
-            defaultMethods.Add(methodName);
-        }
-        else
-        {
-            developmentMethods.Add(methodName);
-        }
+        configMethods.Add(new[] { configEnvName, methodName });
 #>
         /// <summary>
         /// <#= file.Replace(path, "").Trim('\\') #>
         /// </summary>
-        public static string <#= methodName #>
-        {
-            get
-            {
-                return @"<#= File.ReadAllText(file).Replace("\"", "\"\"") #>";
-            }
-        }
+        public const string <#= methodName #> = 
+            @"<#= File.ReadAllText(file).Replace("\"", "\"\"") #>";
 <# } #>
         
-        public string GetSettings()
+        public string GetSettings(string environmentName)
         {
-            var settings = <#= string.Join(" + ", defaultMethods) #>;
-            return settings;
-        }
+            if (string.IsNullOrEmpty(environmentName))
+            {
+                environmentName= "Default";
+            }
 
-        public string GetDevelopmentSettings()
-        {
-            var settings = <#= string.Join(" + ", developmentMethods) #>;
-            return settings;
-        }
+<#
+        foreach (var configMethod in configMethods)
+        {          
+#>
+            if (environmentName.Equals("<#= configMethod[0] #>", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return <#= configMethod[1] #>;
+            }
 
+<#      } #>
+            return string.Empty;
+        }
     }
 }

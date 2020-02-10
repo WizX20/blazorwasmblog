@@ -2,8 +2,6 @@
 {
     public interface IConfigurationSettings
     {
-        string GetSettings();
-
-        string GetDevelopmentSettings();
+        string GetSettings(string environmentName);
     }
 }

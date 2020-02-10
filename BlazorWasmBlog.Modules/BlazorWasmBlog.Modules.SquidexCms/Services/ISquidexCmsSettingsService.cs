@@ -4,6 +4,6 @@ namespace BlazorWasmBlog.Modules.SquidexCms.Services
 {
     public interface ISquidexCmsSettingsService
     {
-        SquidexCmsSettings GetSquidexCmsSettings(bool useDevelopmentSettings);
+        SquidexCmsSettings GetSquidexCmsSettings();
     }
 }

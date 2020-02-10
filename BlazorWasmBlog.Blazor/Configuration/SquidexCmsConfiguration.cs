@@ -19,11 +19,8 @@ namespace BlazorWasmBlog.Blazor.Configuration
         /// <summary>
         /// SquidexCmsConfiguration.Development.json
         /// </summary>
-        public static string SquidexCmsConfiguration_Development
-        {
-            get
-            {
-                return @"{
+        public const string SquidexCmsConfiguration_Development = 
+            @"{
   ""SquidexCmsSettings"": {
     ""Url"": ""https://cloud.squidex.io"",
     ""AppName"": ""todo.dev"",
@@ -31,37 +28,37 @@ namespace BlazorWasmBlog.Blazor.Configuration
     ""ClientSecret"": ""todo.dev""
   }
 }";
-            }
-        }
         /// <summary>
         /// SquidexCmsConfiguration.json
         /// </summary>
-        public static string SquidexCmsConfiguration
-        {
-            get
-            {
-                return @"{
+        public const string SquidexCmsConfiguration = 
+            @"{
   ""SquidexCmsSettings"": {
     ""Url"": ""https://cloud.squidex.io"",
-    ""AppName"": ""todo"",
-    ""ClientId"": ""todo:default"",
-    ""ClientSecret"": ""todo""
+    ""AppName"": ""blazorwasmblog"",
+    ""ClientId"": ""blazorwasmblog:default"",
+    ""ClientSecret"": ""YOUR-SECRET-HERE""
   }
 }";
-            }
-        }
         
-        public string GetSettings()
+        public string GetSettings(string environmentName)
         {
-            var settings = SquidexCmsConfiguration_Development;
-            return settings;
-        }
+            if (string.IsNullOrEmpty(environmentName))
+            {
+                environmentName= "Default";
+            }
 
-        public string GetDevelopmentSettings()
-        {
-            var settings = SquidexCmsConfiguration;
-            return settings;
-        }
+            if (environmentName.Equals("Development", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return SquidexCmsConfiguration_Development;
+            }
 
+            if (environmentName.Equals("Default", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return SquidexCmsConfiguration;
+            }
+
+            return string.Empty;
+        }
     }
 }

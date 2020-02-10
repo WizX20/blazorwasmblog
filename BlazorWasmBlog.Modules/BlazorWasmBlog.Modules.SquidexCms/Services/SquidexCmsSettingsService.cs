@@ -16,20 +16,10 @@ namespace BlazorWasmBlog.Modules.SquidexCms.Services
             this.SettingStore = settingStore;
         }
 
-        public SquidexCmsSettings GetSquidexCmsSettings(bool useDevelopmentSettings)
+        public SquidexCmsSettings GetSquidexCmsSettings()
         {
             var configurationName = typeof(T).Name;
             var sectionName = typeof(SquidexCmsSettings).Name;
-
-            if (useDevelopmentSettings)
-            {
-                var developmentSettings = this.SettingStore.GetDevelopmentSettings<SquidexCmsSettings>(
-                    configurationName: configurationName,
-                    sectionName: sectionName
-                );
-
-                return developmentSettings;
-            }
 
             var settings = this.SettingStore.GetSettings<SquidexCmsSettings>(
                 configurationName: configurationName,

@@ -1,8 +1,8 @@
 ﻿{
   "SquidexCmsSettings": {
     "Url": "https://cloud.squidex.io",
-    "AppName": "todo",
-    "ClientId": "todo:default",
-    "ClientSecret": "todo"
+    "AppName": "blazorwasmblog",
+    "ClientId": "blazorwasmblog:default",
+    "ClientSecret": "YOUR-SECRET-HERE"
   }
 }
