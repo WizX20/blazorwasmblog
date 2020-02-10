@@ -82,7 +82,7 @@ namespace BlazorWasmBlog.Core.Application.Configuration
             return this.GetConfigurationInstance<T>(
                 configurationName: configurationName,
                 sectionName: sectionName,
-                fileName: $"{Development}.{configurationName}",
+                fileName: $"{configurationName}.{Development}",
                 useDevelopmentSettings: true
             );
         }
