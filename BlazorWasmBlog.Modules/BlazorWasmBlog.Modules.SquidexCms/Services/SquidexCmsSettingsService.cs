@@ -4,7 +4,8 @@ using Dawn;
 
 namespace BlazorWasmBlog.Modules.SquidexCms.Services
 {
-    public class SquidexCmsSettingsService : ISquidexCmsSettingsService
+    public class SquidexCmsSettingsService<T> : ISquidexCmsSettingsService
+        where T : class, IConfigurationSettings
     {
         protected ISettingStore SettingStore { get; }
 
@@ -17,7 +18,7 @@ namespace BlazorWasmBlog.Modules.SquidexCms.Services
 
         public SquidexCmsSettings GetSquidexCmsSettings(bool useDevelopmentSettings)
         {
-            var configurationName = typeof(SquidexCmsConfiguration).Name;
+            var configurationName = typeof(T).Name;
             var sectionName = typeof(SquidexCmsSettings).Name;
 
             if (useDevelopmentSettings)
