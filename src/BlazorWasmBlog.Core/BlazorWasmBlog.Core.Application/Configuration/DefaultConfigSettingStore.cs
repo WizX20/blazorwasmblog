@@ -18,15 +18,20 @@ namespace BlazorWasmBlog.Core.Application.Configuration
         /// <summary>
         /// Gets the environment name from the launchSettings.json.
         /// </summary>
-        public static string EnvironmentName { get; } = Environment.GetEnvironmentVariable(ASPNETCORE_ENVIRONMENT);
+        public string EnvironmentName { get; } // = Environment.GetEnvironmentVariable(ASPNETCORE_ENVIRONMENT);
+
+        protected IConfiguration AppConfiguration { get; }
 
         protected IEnumerable<IConfigurationSettings> ConfigurationSettings { get; }
 
-        public DefaultConfigSettingStore(IEnumerable<IConfigurationSettings> configurationSettings)
+        public DefaultConfigSettingStore(IConfiguration configuration, IEnumerable<IConfigurationSettings> configurationSettings)
         {
+            Guard.Argument(configuration, nameof(configuration)).NotNull();
             Guard.Argument(configurationSettings, nameof(configurationSettings)).NotNull();
 
+            this.AppConfiguration = configuration;
             this.ConfigurationSettings = configurationSettings;
+            this.EnvironmentName = configuration.GetValue<string>(ASPNETCORE_ENVIRONMENT);
         }
 
         /// <summary>

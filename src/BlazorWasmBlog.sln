@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWasmBlog.Server", "BlazorWasmBlog.Server\BlazorWasmBlog.Server.csproj", "{D9B785AA-57D9-4E0A-B6C3-C5354F05F010}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{A2CE50DA-594B-4C9F-AEE4-86906936B018}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CE50DA-594B-4C9F-AEE4-86906936B018}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CE50DA-594B-4C9F-AEE4-86906936B018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9B785AA-57D9-4E0A-B6C3-C5354F05F010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9B785AA-57D9-4E0A-B6C3-C5354F05F010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9B785AA-57D9-4E0A-B6C3-C5354F05F010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9B785AA-57D9-4E0A-B6C3-C5354F05F010}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorWasmBlog.Blazor\BlazorWasmBlog.Blazor.csproj" />
+    <ProjectReference Include="..\BlazorWasmBlog.Core\BlazorWasmBlog.Core.Application\BlazorWasmBlog.Core.Application.csproj" />
+    <ProjectReference Include="..\BlazorWasmBlog.Core\BlazorWasmBlog.Core.Infrastructure\BlazorWasmBlog.Core.Infrastructure.csproj" />
+    <ProjectReference Include="..\BlazorWasmBlog.Modules\BlazorWasmBlog.Modules.SquidexCms\BlazorWasmBlog.Modules.SquidexCms.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Shared\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Roslynator.Analyzers" Version="2.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="1.0.0-rc">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

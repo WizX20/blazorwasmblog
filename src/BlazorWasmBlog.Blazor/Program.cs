@@ -4,6 +4,7 @@ using BlazorWasmBlog.Blazor.Configuration;
 using BlazorWasmBlog.Core.Application;
 using BlazorWasmBlog.Modules.SquidexCms;
 using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 
