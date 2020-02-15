@@ -17,12 +17,12 @@ namespace BlazorWasmBlog.Blazor
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            RegisterServices(builder.Services);
+            ConfigureServices(builder.Services);
 
             await builder.Build().RunAsync();
         }
 
-        private static void RegisterServices(IServiceCollection services)
+        private static void ConfigureServices(IServiceCollection services)
         {
             // Logging
             services.AddSingleton<IBlazeDebugger, BlazeDebugger>();
