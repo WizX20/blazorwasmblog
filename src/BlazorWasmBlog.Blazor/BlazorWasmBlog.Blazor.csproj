@@ -27,22 +27,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Configuration\SquidexCmsConfiguration.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SquidexCmsConfiguration.cs</LastGenOutput>
-    </None>
+    <EmbeddedResource Include=".\Configuration\ApplicationConfiguration.Development.json" Condition="'$(Configuration)' == 'Debug'">
+      <LogicalName>ApplicationConfiguration.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include=".\Configuration\ApplicationConfiguration.json" Condition="'$(Configuration)' == 'Release'">
+      <LogicalName>ApplicationConfiguration.json</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include=".\Configuration\SquidexCmsConfiguration.Development.json" Condition="'$(Configuration)' == 'Debug'">
+      <LogicalName>SquidexCmsConfiguration.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include=".\Configuration\SquidexCmsConfiguration.json" Condition="'$(Configuration)' == 'Release'">
+      <LogicalName>SquidexCmsConfiguration.json</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Configuration\SquidexCmsConfiguration.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SquidexCmsConfiguration.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <Import Project="$(MSBuildProjectDirectory)\..\..\tools\TextTemplating\Microsoft.TextTemplating.targets" />

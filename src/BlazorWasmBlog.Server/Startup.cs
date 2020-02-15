@@ -1,12 +1,12 @@
-﻿using BlazorWasmBlog.Blazor.Configuration;
-using BlazorWasmBlog.Core.Application;
-using BlazorWasmBlog.Core.Application.Configuration;
+﻿using BlazorWasmBlog.Core.Application;
+using BlazorWasmBlog.Core.Application.Logging;
 using BlazorWasmBlog.Modules.SquidexCms;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace BlazorWasmBlog.Server
 {
@@ -25,11 +25,17 @@ namespace BlazorWasmBlog.Server
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            // Services to make the client injection work.
             services.AddScoped<System.Net.Http.HttpClient>();
 
+            // Logging
+            services.AddSingleton<IBlazeDebugger, BlazeDebugger>();
+
             // Configuration
-            services.AddDefaultConfigSettingStore(); // use default in-memory configuration
-            services.AddSquidexCms<SquidexCmsConfigurationSettings>(); // using squidex as Content Management System
+            var assembly = Assembly.GetAssembly(typeof(BlazorWasmBlog.Blazor.App));
+            services.AddDefaultApplicationServices(assembly);
+            services.AddSquidexCms(assembly); // using squidex as Content Management System.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

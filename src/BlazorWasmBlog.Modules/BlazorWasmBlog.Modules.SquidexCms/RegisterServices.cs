@@ -1,7 +1,7 @@
-﻿using BlazorWasmBlog.Core.Infrastructure.Configuration;
-using BlazorWasmBlog.Modules.SquidexCms.Services;
+﻿using BlazorWasmBlog.Core.Infrastructure.Extensions;
+using BlazorWasmBlog.Modules.SquidexCms.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
+using System.Reflection;
 
 namespace BlazorWasmBlog.Modules.SquidexCms
 {
@@ -9,19 +9,15 @@ namespace BlazorWasmBlog.Modules.SquidexCms
     {
         /// <summary>
         /// Adds the squidex CMS services:
-        /// - Adds the configuration settings class of <see cref="IConfigurationSettings"/> as singleton;
-        /// - Adds an instance of the <see cref="ISquidexCmsSettingsService"/>.
+        /// - Adds the configuration settings class <see cref="SquidexCmsConfiguration"/> as singleton;
         /// </summary>
         /// <param name="services">The service collection.</param>
-        public static void AddSquidexCms<T>(this IServiceCollection services)
-            where T : class, IConfigurationSettings
+        /// <param name="appAssembly">The active Blazor client application assembly.</param>
+        public static void AddSquidexCms(this IServiceCollection services, Assembly appAssembly)
         {
-            if (!services.Any(s => s.ServiceType == typeof(T)))
-            {
-                services.AddSingleton<IConfigurationSettings, T>();
-            }
-
-            services.AddSingleton<ISquidexCmsSettingsService, SquidexCmsSettingsService<T>>();
+            // Adds squidex configuration settings
+            var squidexCmsConfiguration = appAssembly.GetApplicationSettings<SquidexCmsConfiguration>(Constants.SquidexCmsConfigurationFileName);
+            services.AddSingleton(squidexCmsConfiguration);
 
             // TODO: Add future squidex CMS services here: ...
             // HttpClients

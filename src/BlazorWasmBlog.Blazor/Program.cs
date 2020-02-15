@@ -1,11 +1,11 @@
 ﻿#pragma warning disable RCS1102 // Make class static.
 
-using BlazorWasmBlog.Blazor.Configuration;
 using BlazorWasmBlog.Core.Application;
+using BlazorWasmBlog.Core.Application.Logging;
 using BlazorWasmBlog.Modules.SquidexCms;
 using Microsoft.AspNetCore.Blazor.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace BlazorWasmBlog.Blazor
@@ -24,9 +24,13 @@ namespace BlazorWasmBlog.Blazor
 
         private static void RegisterServices(IServiceCollection services)
         {
+            // Logging
+            services.AddSingleton<IBlazeDebugger, BlazeDebugger>();
+
             // Configuration
-            services.AddDefaultConfigSettingStore(); // use default in-memory configuration
-            services.AddSquidexCms<SquidexCmsConfigurationSettings>(); // using squidex as Content Management System
+            var assembly = Assembly.GetExecutingAssembly();
+            services.AddDefaultApplicationServices(assembly);
+            services.AddSquidexCms(assembly); // using squidex as Content Management System.
 
             // TODO: Future service registrations here: ...
             // Caching

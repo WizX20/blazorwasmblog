@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <Folder Include="Queries\BlogPost\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

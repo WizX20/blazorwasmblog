@@ -1,8 +1,6 @@
 ﻿{
-  "SquidexCmsSettings": {
-    "Url": "https://cloud.squidex.io",
-    "AppName": "blazorwasmblog",
-    "ClientId": "blazorwasmblog:default",
-    "ClientSecret": "YOUR-SECRET-HERE"
-  }
+  "Url": "https://cloud.squidex.io",
+  "AppName": "blazorwasmblog",
+  "ClientId": "blazorwasmblog:default",
+  "ClientSecret": "YOUR-SECRET-HERE"
 }

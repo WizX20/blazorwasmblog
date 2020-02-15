@@ -1,9 +1,8 @@
 ﻿@page "/"
 
-@using BlazorWasmBlog.Modules.SquidexCms.Services
 @using BlazorWasmBlog.Modules.SquidexCms.Configuration
 
-@inject ISquidexCmsSettingsService CmsSettingsService
+@inject SquidexCmsConfiguration CmsConfiguration
 
 <h1>Hello, world!</h1>
 
@@ -26,8 +25,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var squidexCmsSettings = CmsSettingsService.GetSquidexCmsSettings();
-        SquidexAppNameSetting = $"{nameof(SquidexCmsSettings.AppName)}: {squidexCmsSettings.AppName}";
+        SquidexAppNameSetting = $"{nameof(CmsConfiguration.AppName)}: {CmsConfiguration.AppName}";
 
         await base.OnInitializedAsync();
     }
