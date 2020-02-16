@@ -1,0 +1,29 @@
+﻿[
+  {
+    "Id": "BlogPost-1",
+    "Slug": "BlogPost-1",
+    "Title": "This is the first blog post title",
+    "IntroductionText": "This data is fetched from the blogposts.json in the sample data directory.",
+    "ReadingMinutes": 10,
+    "TeaserImage": "",
+    "PublishedDate": "2020-02-01"
+  },
+  {
+    "Id": "BlogPost-2",
+    "Slug": "BlogPost-2",
+    "Title": "This is the second blog post title",
+    "IntroductionText": "This data is fetched from the blogposts.json in the sample data directory.",
+    "ReadingMinutes": 5,
+    "TeaserImage": "//via.placeholder.com/250",
+    "PublishedDate": "2020-02-02"
+  },
+  {
+    "Id": "BlogPost-3",
+    "Slug": "BlogPost-3",
+    "Title": "This is the third blog post title",
+    "IntroductionText": "This data is fetched from the blogposts.json in the sample data directory.",
+    "ReadingMinutes": 20,
+    "TeaserImage": "//via.placeholder.com/250",
+    "PublishedDate": "2020-02-02"
+  }
+]

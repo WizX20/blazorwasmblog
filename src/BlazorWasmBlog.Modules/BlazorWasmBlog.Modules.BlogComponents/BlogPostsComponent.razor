@@ -1,0 +1,53 @@
+﻿@using BlazorWasmBlog.Modules.BlogComponents.Models;
+
+@if (BlogPosts == null || BlogPosts.Count < 1)
+{
+    <span>Loading...</span>
+}
+else
+{
+    <section class="wasmblog-blogpostscomponent p-3 p-lg-5">
+        <div class="container">
+
+            <h2 class="section-title font-weight-bold mb-5">Latest Blog Posts</h2>
+
+            <div class="wasmblog-blogpostscomponent-blogposts card-deck">
+                @foreach (var blogPost in BlogPosts.Take(DisplayTotal))
+                {
+                    <a class="blogpost-card card" href="@BlogUrl/@blogPost.Slug">
+                        @if (!string.IsNullOrEmpty(blogPost.TeaserImage))
+                        {
+                            <img class="card-img-top" src="@blogPost.TeaserImage" alt="Teaser image for: @blogPost.Title">
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@blogPost.Title</h5>
+                            <p class="card-text">@blogPost.IntroductionText</p>
+                            <span class="btn btn-primary">Read more &rarr;</span>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Published on @blogPost.PublishedDate.ToShortDateString()</small>
+                        </div>
+                    </a>
+                }
+            </div>
+
+            <div class="text-center py-3">
+                <a href="@BlogUrl" class="btn btn-primary">
+                    <i class="fas fa-arrow-alt-circle-right mr-2"></i>View Blog
+                </a>
+            </div>
+
+        </div>
+    </section>
+}
+
+@code {
+    [Parameter]
+    public IList<BlogPostModel> BlogPosts { get; set; }
+
+    [Parameter]
+    public int DisplayTotal { get; set; } = 3;
+
+    [Parameter]
+    public string BlogUrl { get; set; } = "/blog";
+}

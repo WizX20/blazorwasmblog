@@ -8,6 +8,7 @@
     <ProjectReference Include="..\BlazorWasmBlog.Blazor\BlazorWasmBlog.Blazor.csproj" />
     <ProjectReference Include="..\BlazorWasmBlog.Core\BlazorWasmBlog.Core.Application\BlazorWasmBlog.Core.Application.csproj" />
     <ProjectReference Include="..\BlazorWasmBlog.Core\BlazorWasmBlog.Core.Infrastructure\BlazorWasmBlog.Core.Infrastructure.csproj" />
+    <ProjectReference Include="..\BlazorWasmBlog.Modules\BlazorWasmBlog.Modules.BlogComponents\BlazorWasmBlog.Modules.BlogComponents.csproj" />
     <ProjectReference Include="..\BlazorWasmBlog.Modules\BlazorWasmBlog.Modules.SquidexCms\BlazorWasmBlog.Modules.SquidexCms.csproj" />
   </ItemGroup>
 

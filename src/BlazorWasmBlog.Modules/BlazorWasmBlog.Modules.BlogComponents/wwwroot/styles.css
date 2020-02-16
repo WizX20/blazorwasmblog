@@ -1,0 +1,8 @@
+﻿.wasmblog-blogpostscomponent {
+}
+
+.wasmblog-blogpostscomponent-blogposts a.blogpost-card,
+.wasmblog-blogpostscomponent-blogposts a.blogpost-card:hover {
+    color: inherit;
+    text-decoration: none;
+}
